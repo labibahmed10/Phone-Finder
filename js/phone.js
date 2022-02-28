@@ -70,21 +70,23 @@ const getId = (slug) => {
 };
 const phoneDetails = document.getElementById("phoneDetails");
 
+// showing details of a phone
+
 const showDetails = (details) => {
   console.log(details);
-
+  phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("row");
   div.innerHTML = `
         <div class="col-md-5">
           <img src="${details.image}" class="img-fluid w-100 rounded-start" alt="..." />
-          <h2 class="text-center mt-3">${details.name}</h2>
+          <h2 class="text-center mt-4">${details.name}</h2>
         </div>
         <div class="col-md-7">
           <div class="card-body">
             <h1 class="card-title display-2 fw-normal">${details.brand}</h1>
             <h3>Status:${details.releaseDate}</h3>
-            <p class="text-center display-4 fw-normal">Details</p>
+            <p class="text-center display-4 fw-normal my-4">Main Features</p>
             <h4>Chipset: ${details.mainFeatures.chipSet}</h4>
             <h4>Display: ${details.mainFeatures.displaySize.slice(0, 20)}</h4>
 
