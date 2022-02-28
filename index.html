@@ -20,12 +20,19 @@
     <!-- input field and button -->
     <div class="input-group mb-3 w-50 mx-auto">
       <input id="input" type="text" class="form-control" placeholder="Search for your phone..." />
-      <button class="btn btn-outline-success" type="button" onclick="findPhone()">Button</button>
+      <button class="btn btn-outline-success" type="button" onclick="findPhone()">Search</button>
     </div>
     <!-- input field and button -->
 
+    <!-- error showing -->
+    <p class="text-center text-danger fs-4">Error Searching!</p>
+
+    <!-- phone details -->
+
+    <div id="phoneDetails" class="card mb-3 mx-auto p-3 border-0" style="max-width: 900px"></div>
+
     <!-- card files -->
-    <div id="cardshow" class="row row-cols-1 row-cols-md-3 g-4 m-0"></div>
+    <div id="cardshow" class="row row-cols-1 row-cols-md-3 g-4 mx-0 my-4"></div>
 
     <!-- JS file -->
     <script src="js/phone.js"></script>
