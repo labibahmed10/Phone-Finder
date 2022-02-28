@@ -1,18 +1,46 @@
+//Cards where phones will see
+
+const showCard = document.getElementById("cardshow");
+
+//error messages
+
+const error1 = document.getElementById("error1").classList;
+const error2 = document.getElementById("error2").classList;
+
+//search button and fetching data's
+
 const findPhone = () => {
   const inputValue = document.getElementById("input").value.toLowerCase();
 
-  if (inputValue === null || inputValue !== "string") {
+  if (inputValue === "" || inputValue <= 0 || inputValue > 0) {
+    error1.remove("d-none");
+    error2.add("d-none");
+    showCard.textContent = "";
+  } else {
+    fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === false) {
+          error2.remove("d-none");
+          error1.add("d-none");
+          showCard.textContent = "";
+        } else {
+          error2.add("d-none");
+          error1.add("d-none");
+          showCard.textContent = "";
+          showPhones(data.data);
+        }
+      });
   }
-  fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
-    .then((res) => res.json())
-    .then((data) => showPhones(data.data));
   document.getElementById("input").value = "";
 };
 
+//showing phones on cards
+
 const showPhones = (data) => {
+  showCard.textContent = "";
   data.slice(0, 20).forEach((phone) => {
-    const showCard = document.getElementById("cardshow");
-    // console.log(phone);
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
