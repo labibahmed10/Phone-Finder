@@ -62,6 +62,8 @@ const showPhones = (data) => {
   });
 };
 
+// Getting slug or id here
+
 const getId = (slug) => {
   fetch(`https://openapi.programming-hero.com/api/phone/${slug}`)
     .then((res) => res.json())
@@ -71,6 +73,9 @@ const getId = (slug) => {
       }
     });
 };
+
+//phone details in a div
+
 const phoneDetails = document.getElementById("phoneDetails");
 
 // showing details of a phone
@@ -79,8 +84,9 @@ const showDetails = (details) => {
   phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("row");
+
+  // checking if others are available
   if (details.others === undefined) {
-    console.log("object");
     div.innerHTML = `
     <div class="col-md-12 mx-auto text-center">
       <img src="${details.image}" class="img-fluid w-75 rounded-start" alt="..." />
@@ -89,7 +95,7 @@ const showDetails = (details) => {
     <div class="col-md-12">
       <div class="card-body">
         <h1 class="card-title fs-1 fw-bold">${details.brand}</h1>
-        <p class="text-muted fs-3 mb-0">${details?.releaseDate}</p>
+        <p class="text-muted fs-3 mb-0">${details.releaseDate ? details.releaseDate : "Coming Soon!"}</p>
         <h5 class="text-center display-5 fw-normal">Main Features</h5>
         <p class="mb-0"><span class="fw-bold fs-4">Chipset:</span> ${details.mainFeatures.chipSet}</p>
         <p class="mb-0"><span class="fw-bold fs-4">Display:</span> ${details.mainFeatures.displaySize}</p>
@@ -98,31 +104,33 @@ const showDetails = (details) => {
         <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.mainFeatures.sensors}</p>
         `;
     return phoneDetails.appendChild(div);
-  } else {
+  }
+  // if available then
+  else {
     div.innerHTML = `
-  <div class="col-md-12 mx-auto text-center">
-    <img src="${details.image}" class="img-fluid w-75 rounded-start" alt="..." />
-    <h2 class="text-center mt-4">${details.name}</h2>
-  </div>
-  <div class="col-md-12">
-    <div class="card-body">
-      <h1 class="card-title fs-1 fw-bold">${details.brand}</h1>
-      <p class="text-muted fs-3 mb-0">${details.releaseDate ? details.releaseDate : "Coming Soon!"}</p>
-      <h5 class="text-center display-5 fw-normal">Main Features</h5>
-      <p class="mb-0"><span class="fw-bold fs-4">Chipset:</span> ${details.mainFeatures.chipSet}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">Display:</span> ${details.mainFeatures.displaySize}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">Memory: </span>${details.mainFeatures.memory}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">Storage:</span> ${details.mainFeatures.storage}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.mainFeatures.sensors}</p>
-      <h5 class="text-center display-5 fw-normal">Other Features</h5>
-      <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.others.Bluetooth}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">GPS:</span> ${details.others.GPS}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">NFC:</span> ${details.others.NFC}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">Radio:</span> ${details.others.Radio}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">USB:</span> ${details.others.USB}</p>
-      <p class="mb-0"><span class="fw-bold fs-4">WLAN:</span> ${details.others.WLAN}</p>
-  </div>
-  </div>
+      <div class="col-md-12 mx-auto text-center">
+        <img src="${details.image}" class="img-fluid w-75 rounded-start" alt="..." />
+        <h2 class="text-center mt-4">${details.name}</h2>
+      </div>
+      <div class="col-md-12">
+        <div class="card-body">
+          <h1 class="card-title fs-1 fw-bold">${details.brand}</h1>
+          <p class="text-muted fs-3 mb-0">${details.releaseDate ? details.releaseDate : "Coming Soon!"}</p>
+          <h5 class="text-center display-5 fw-normal">Main Features</h5>
+          <p class="mb-0"><span class="fw-bold fs-4">Chipset:</span> ${details.mainFeatures.chipSet}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">Display:</span> ${details.mainFeatures.displaySize}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">Memory: </span>${details.mainFeatures.memory}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">Storage:</span> ${details.mainFeatures.storage}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.mainFeatures.sensors}</p>
+          <h5 class="text-center display-5 fw-normal">Other Features</h5>
+          <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.others.Bluetooth}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">GPS:</span> ${details.others.GPS}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">NFC:</span> ${details.others.NFC}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">Radio:</span> ${details.others.Radio}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">USB:</span> ${details.others.USB}</p>
+          <p class="mb-0"><span class="fw-bold fs-4">WLAN:</span> ${details.others.WLAN}</p>
+      </div>
+      </div>
 `;
     phoneDetails.appendChild(div);
   }
