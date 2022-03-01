@@ -84,9 +84,10 @@ const showDetails = (details) => {
   phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("row");
-
+  console.log(details.others);
   // checking if others are available
   if (details.others === undefined) {
+    document.getElementById("phoneDetails").classList.remove("d-none");
     div.innerHTML = `
     <div class="col-md-12 mx-auto text-center">
       <img src="${details.image}" class="img-fluid w-75 rounded-start" alt="..." />
@@ -102,6 +103,8 @@ const showDetails = (details) => {
         <p class="mb-0"><span class="fw-bold fs-4">Memory: </span>${details.mainFeatures.memory}</p>
         <p class="mb-0"><span class="fw-bold fs-4">Storage:</span> ${details.mainFeatures.storage}</p>
         <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.mainFeatures.sensors}</p>
+      </div>
+    </div>
         `;
     return phoneDetails.appendChild(div);
   }
