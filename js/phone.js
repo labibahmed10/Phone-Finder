@@ -16,6 +16,7 @@ const findPhone = () => {
     error1.remove("d-none");
     error2.add("d-none");
     showCard.textContent = "";
+    phoneDetails.textContent = "";
   } else {
     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
       .then((res) => res.json())
@@ -29,6 +30,7 @@ const findPhone = () => {
           error2.add("d-none");
           error1.add("d-none");
           showCard.textContent = "";
+          phoneDetails.textContent = "";
           showPhones(data.data);
         }
       });
@@ -78,25 +80,27 @@ const showDetails = (details) => {
   const div = document.createElement("div");
   div.classList.add("row");
   div.innerHTML = `
-        <div class="col-md-5">
-          <img src="${details.image}" class="img-fluid w-100 rounded-start" alt="..." />
+        <div class="col-md-12 mx-auto text-center">
+          <img src="${details.image}" class="img-fluid w-75 rounded-start" alt="..." />
           <h2 class="text-center mt-4">${details.name}</h2>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-12">
           <div class="card-body">
-            <h1 class="card-title display-2 fw-normal">${details.brand}</h1>
-            <h3>Status:${details.releaseDate}</h3>
-            <p class="text-center display-4 fw-normal my-4">Main Features</p>
-            <h4>Chipset: ${details.mainFeatures.chipSet}</h4>
-            <h4>Display: ${details.mainFeatures.displaySize.slice(0, 20)}</h4>
-
-            <h4>Memory:<span>${details.mainFeatures.memory.slice(0, 13)}</span><br>
-            <span>${details.mainFeatures.memory.slice(14, 28)}</span><br>
-            <span>${details.mainFeatures.memory.slice(29, 43)}</span></h4>
-
-            <h4>Storage: ${details.mainFeatures.storage}</h4>
-            <h4>Sensors: ${details.mainFeatures.sensors}</h4>
-           
+            <h1 class="card-title fs-1 fw-bold">${details.brand}</h1>
+            <p class="text-muted fs-3 mb-0">${details.releaseDate}</p>
+            <h5 class="text-center display-5 fw-normal">Main Features</h5>
+            <p class="mb-0"><span class="fw-bold fs-4">Chipset:</span> ${details.mainFeatures.chipSet}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">Display:</span> ${details.mainFeatures.displaySize}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">Memory: </span>${details.mainFeatures.memory}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">Storage:</span> ${details.mainFeatures.storage}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.mainFeatures.sensors}</p>
+            <h5 class="text-center display-5 fw-normal">Other Features</h5>
+            <p class="mb-0"><span class="fw-bold fs-4">Sensors:</span> ${details.others.Bluetooth}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">GPS:</span> ${details.others.Gps}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">NFC:</span> ${details.others.NFC}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">Radio:</span> ${details.others.Radio}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">USB:</span> ${details.others.USB}</p>
+            <p class="mb-0"><span class="fw-bold fs-4">WLAN:</span> ${details.others.WLAN}</p>
           </div>
         </div>
         `;
