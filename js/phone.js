@@ -138,3 +138,10 @@ const showDetails = (details) => {
     phoneDetails.appendChild(div);
   }
 };
+
+//spinner on loading --
+const preLoader = document.getElementById("spinner");
+
+window.addEventListener("load", function () {
+  preLoader.style.display = "none";
+});

@@ -1,0 +1,9 @@
+#spinner {
+  background-color: aliceblue;
+  height: 1000vh;
+  background: url("1486.gif");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 9999;
+}
