@@ -1,9 +1,10 @@
 //Cards where phones will see
-
 const showCard = document.getElementById("cardshow");
 
-//error messages
+//phone details in a div
+const phoneDetails = document.getElementById("phoneDetails");
 
+//error messages
 const error1 = document.getElementById("error1").classList;
 const error2 = document.getElementById("error2").classList;
 
@@ -21,13 +22,13 @@ const findPhone = () => {
     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.status === false) {
           error2.remove("d-none");
           error1.add("d-none");
           showCard.textContent = "";
           phoneDetails.textContent = "";
         } else {
+          spinnerLoad("block");
           error2.add("d-none");
           error1.add("d-none");
           showCard.textContent = "";
@@ -60,6 +61,7 @@ const showPhones = (data) => {
     `;
     showCard.appendChild(div);
   });
+  spinnerLoad("none");
 };
 
 // Getting slug or id here
@@ -74,10 +76,6 @@ const getId = (slug) => {
     });
 };
 
-//phone details in a div
-
-const phoneDetails = document.getElementById("phoneDetails");
-
 // showing details of a phone
 
 const showDetails = (details) => {
@@ -85,9 +83,8 @@ const showDetails = (details) => {
   const div = document.createElement("div");
   div.classList.add("row");
   console.log(details);
-  // checking if others are available
+  // checking if others are not available
   if (details.others === undefined) {
-    document.getElementById("phoneDetails").classList.remove("d-none");
     div.innerHTML = `
     <div class="col-md-12 mx-auto text-center">
       <img src="${details.image}" class="img-fluid w-75 rounded-start" alt="..." />
@@ -118,7 +115,7 @@ const showDetails = (details) => {
         `;
     return phoneDetails.appendChild(div);
   }
-  // if available then
+  // if others are available then
   else {
     div.innerHTML = `
       <div class="col-md-12 mx-auto text-center">
@@ -159,11 +156,10 @@ const showDetails = (details) => {
 `;
     phoneDetails.appendChild(div);
   }
+  spinnerLoad("none");
 };
 
 //spinner on loading --
-const preLoader = document.getElementById("spinner");
-
-window.addEventListener("load", function () {
-  preLoader.style.display = "none";
-});
+const spinnerLoad = (display) => {
+  document.getElementById("spinner").style.display = display;
+};
