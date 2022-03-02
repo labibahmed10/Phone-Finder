@@ -16,7 +16,7 @@ const error2 = document.getElementById("error2").classList;
 const findPhone = () => {
   const inputValue = document.getElementById("input").value.toLowerCase();
 
-  if (inputValue === "" || inputValue <= 0 || inputValue > 0) {
+  if (inputValue === "" || !isNaN(inputValue)) {
     error1.remove("d-none");
     error2.add("d-none");
     showCard.textContent = ""; //cards cleared
