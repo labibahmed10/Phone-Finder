@@ -7,3 +7,22 @@
   background-attachment: fixed;
   z-index: 9999;
 }
+
+.heading {
+  color: #74959a;
+}
+
+.header2 {
+  color: #74959a;
+}
+
+.brand {
+  color: #6867ac;
+}
+.feature-text {
+  color: #21325e;
+}
+
+.features {
+  color: #21325e;
+}
