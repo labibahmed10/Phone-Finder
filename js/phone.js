@@ -1,10 +1,13 @@
 //Cards where phones will see
+
 const showCard = document.getElementById("cardshow");
 
 //phone details in a div
+
 const phoneDetails = document.getElementById("phoneDetails");
 
 //error messages
+
 const error1 = document.getElementById("error1").classList;
 const error2 = document.getElementById("error2").classList;
 
@@ -16,8 +19,8 @@ const findPhone = () => {
   if (inputValue === "" || inputValue <= 0 || inputValue > 0) {
     error1.remove("d-none");
     error2.add("d-none");
-    showCard.textContent = "";
-    phoneDetails.textContent = "";
+    showCard.textContent = ""; //cards cleared
+    phoneDetails.textContent = ""; //phone details cleared
   } else {
     fetch(`https://openapi.programming-hero.com/api/phones?search=${inputValue}`)
       .then((res) => res.json())
@@ -25,14 +28,14 @@ const findPhone = () => {
         if (data.status === false) {
           error2.remove("d-none");
           error1.add("d-none");
-          showCard.textContent = "";
-          phoneDetails.textContent = "";
+          showCard.textContent = ""; //cards cleared
+          phoneDetails.textContent = ""; //phone details cleared
         } else {
-          spinnerLoad("block");
+          spinnerLoad("block"); //spinner added
           error2.add("d-none");
           error1.add("d-none");
-          showCard.textContent = "";
-          phoneDetails.textContent = "";
+          showCard.textContent = ""; //cards cleared
+          phoneDetails.textContent = ""; //phone details cleared
           showPhones(data.data);
         }
       });
@@ -61,7 +64,7 @@ const showPhones = (data) => {
     `;
     showCard.appendChild(div);
   });
-  spinnerLoad("none");
+  spinnerLoad("none"); //spinner added
 };
 
 // Getting slug or id here
@@ -82,7 +85,7 @@ const showDetails = (details) => {
   phoneDetails.textContent = "";
   const div = document.createElement("div");
   div.classList.add("row");
-  console.log(details);
+
   // checking if others are not available
   if (details.others === undefined) {
     div.innerHTML = `
@@ -156,7 +159,7 @@ const showDetails = (details) => {
 `;
     phoneDetails.appendChild(div);
   }
-  spinnerLoad("none");
+  spinnerLoad("none"); //spinner added
 };
 
 //spinner on loading --
